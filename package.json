@@ -1,0 +1,26 @@
+{
+  "name": "openbazaar-node",
+  "version": "1.0.0",
+  "description": "A node.js library for the OpenBazaar API. Uses async/await ECMA2017",
+  "main": "openbazaar.js",
+  "scripts": {
+    "test": "echo no tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/P2PVPS/openbazaar-node.git"
+  },
+  "keywords": [
+    "openbazaar",
+    "api"
+  ],
+  "author": "Chris Troutner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/P2PVPS/openbazaar-node/issues"
+  },
+  "homepage": "https://github.com/P2PVPS/openbazaar-node#readme",
+  "dependencies": {
+    "request-promise": "^4.2.2"
+  }
+}
