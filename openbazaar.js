@@ -6,12 +6,25 @@
   This library is for node.js programs using ECMA2017 async/await.
 
   Functions implemented in this library:
-  
+
   getOBAuth - Generate an auth header for AJAX calls to the OB store.
   getNotifications - Get notifications
   markNotificationAsRead - Mark a notification as read
   fulfillOrder - Fulfill an order
   getListings - Get all product listings in the OB store.
+
+  Most functions expect to be passed a config object. Here is an example of
+  generating a config object:
+
+  // Generate api credentials for OpenBazaar.
+  const apiCredentials = openbazaar.getOBAuth(OB_USERNAME, OB_PASSWORD);
+  let config = {
+    // Config object passed to library functions.
+    apiCredentials: apiCredentials,
+    server: SERVER_URL,
+    port: SERVER_PORT,
+    obPort: OB_SERVER_PORT
+  };
 
 */
 

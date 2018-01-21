@@ -15,3 +15,30 @@ fulfillOrder - Fulfill an order
 getListings - Get all product listings in the OB store.
 
 Please help expand this library by submitting a Pull Request.
+
+## Installation
+
+Install this package with:
+
+`npm install --save openbazaar-node`
+
+## Usage
+
+Include this library in the node.js application dependencies with:
+
+`const openbazaar = require("openbazaar-node")`
+
+Most functions expect to be passed a config object. Here is an example of
+generating a config object:
+
+```
+// Generate api credentials for OpenBazaar.
+const apiCredentials = openbazaar.getOBAuth(OB_USERNAME, OB_PASSWORD);
+let config = {
+  // Config object passed to library functions.
+  apiCredentials: apiCredentials,
+  server: SERVER_URL,
+  port: SERVER_PORT,
+  obPort: OB_SERVER_PORT
+};
+```
