@@ -14,6 +14,9 @@ sudo tar -zxvf  go1.9.1.linux-amd64.tar.gz -C /usr/local/
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin
 
+echo "Outputing GO version:"
+go version
+
 # Get OB source code
 go get github.com/OpenBazaar/openbazaar-go
 
