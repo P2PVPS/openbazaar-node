@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/P2PVPS/openbazaar-node.git"
   },
-  "keywords": ["openbazaar", "api"],
+  "keywords": [
+    "openbazaar",
+    "api"
+  ],
   "author": "Chris Troutner",
   "license": "MIT",
   "bugs": {
@@ -18,6 +21,7 @@
   },
   "homepage": "https://github.com/P2PVPS/openbazaar-node#readme",
   "dependencies": {
+    "request": "^2.85.0",
     "request-promise": "^4.2.2"
   }
 }

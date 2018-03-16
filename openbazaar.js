@@ -34,11 +34,11 @@
 const rp = require("request-promise");
 
 // Generate an auth key for the header. Required fall all OpenBazaar API calls.
-function getOBAuth(clientID, clientSecret) {
+function getOBAuth(config) {
   //debugger;
 
   //Encoding as per API Specification.
-  const combinedCredential = `${clientID}:${clientSecret}`;
+  const combinedCredential = `${config.clientId}:${config.clientSecret}`;
   //var base64Credential = window.btoa(combinedCredential);
   const base64Credential = Buffer.from(combinedCredential).toString("base64");
   const readyCredential = `Basic ${base64Credential}`;
