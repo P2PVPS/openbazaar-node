@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/P2PVPS/openbazaar-node.svg?branch=master)](https://travis-ci.org/P2PVPS/openbazaar-node)
+
 # openbazaar-node
 
 This library contains a list of functions used to interact with a local
