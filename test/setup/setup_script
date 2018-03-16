@@ -21,10 +21,11 @@ go get github.com/OpenBazaar/openbazaar-go
 cd $GOPATH/src/github.com/OpenBazaar/openbazaar-go
 pwd
 echo "Initializing OB"
-go run openbazaar.go init
+go run openbazaard.go init
 
 pwd
 cd
+pwd
 cd .openbazaar2.0
 pwd
 cp /home/travis/build/P2PVPS/openbazaar-node/test/setup/config .
