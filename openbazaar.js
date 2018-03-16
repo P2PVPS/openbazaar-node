@@ -124,10 +124,25 @@ async function getListings(config) {
   }
 }
 
+function createListing(config, listingData) {
+  const options = {
+    method: "POST",
+    uri: `${config.server}:${config.obPort}/ob/listing/`,
+    body: listingData,
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials,
+    },
+  };
+
+  return rp(options);
+}
+
 module.exports = {
   getOBAuth,
   getNotifications,
   markNotificationAsRead,
   fulfillOrder,
   getListings,
+  createListing
 };
