@@ -4,7 +4,7 @@
 pwd
 
 # Install dependencies.
-apt-get install -y build-essential git
+sudo apt-get install -y build-essential git
 
 # Install go
 wget https://storage.googleapis.com/golang/go1.9.1.linux-amd64.tar.gz
@@ -19,7 +19,10 @@ go get github.com/OpenBazaar/openbazaar-go
 
 # Initialize OB
 cd $GOPATH/src/github.com/OpenBazaar/openbazaar-go
-go run openbazaar.go init
+echo "Initializing OB"
+go run $GOPATH/src/github.com/OpenBazaar/openbazaar-go/openbazaar.go init
 
+pwd
 cd
+pwd
 ls
