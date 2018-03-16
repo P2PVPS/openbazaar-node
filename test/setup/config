@@ -1,0 +1,149 @@
+{
+  "API": {
+    "HTTPHeaders": null
+  },
+  "Addresses": {
+    "API": "",
+    "Announce": null,
+    "Gateway": "/ip4/0.0.0.0/tcp/4002",
+    "NoAnnounce": null,
+    "Swarm": [
+      "/ip4/0.0.0.0/tcp/4001",
+      "/ip6/::/tcp/4001",
+      "/ip4/0.0.0.0/tcp/9005/ws",
+      "/ip6/::/tcp/9005/ws"
+    ]
+  },
+  "Bootstrap": [
+    "/ip4/107.170.133.32/tcp/4001/ipfs/QmUZRGLhcKXF1JyuaHgKm23LvqcoMYwtb9jmh8CkP4og3K",
+    "/ip4/139.59.174.197/tcp/4001/ipfs/QmZfTbnpvPwxCjpCG3CXJ7pfexgkBZ2kgChAiRJrTK1HsM",
+    "/ip4/139.59.6.222/tcp/4001/ipfs/QmRDcEDK9gSViAevCHiE6ghkaBCU7rTuQj4BDpmCzRvRYg",
+    "/ip4/46.101.198.170/tcp/4001/ipfs/QmePWxsFT9wY3QuukgVDB7XZpqdKhrqJTHTXU7ECLDWJqX"
+  ],
+  "Bootstrap-testnet": [
+    "/ip4/165.227.117.91/tcp/4001/ipfs/Qmaa6De5QYNqShzPb9SGSo8vLmoUte8mnWgzn4GYwzuUYA",
+    "/ip4/46.101.221.165/tcp/4001/ipfs/QmVAQYg7ygAWTWegs8HSV2kdW1MqW8WMrmpqKG1PQtkgTC"
+  ],
+  "DataSharing": {
+    "AcceptStoreRequests": false,
+    "PushTo": [
+      "QmY8puEnVx66uEet64gAf4VZRo7oUyMCwG6KdB9KM92EGQ",
+      "QmPPg2qeF3n2KvTRXRZLaTwHCw8JxzF4uZK93RfMoDvf2o",
+      "QmPPegaeM4rXfQDF3uu784d93pLEzV8A4zXU7akEgYnTFd"
+    ]
+  },
+  "Datastore": {
+    "BloomFilterSize": 0,
+    "GCPeriod": "1h",
+    "HashOnRead": false,
+    "Spec": {
+      "mounts": [
+        {
+          "child": {
+            "path": "blocks",
+            "shardFunc": "/repo/flatfs/shard/v1/next-to-last/2",
+            "sync": true,
+            "type": "flatfs"
+          },
+          "mountpoint": "/blocks",
+          "prefix": "flatfs.datastore",
+          "type": "measure"
+        },
+        {
+          "child": {
+            "compression": "none",
+            "path": "datastore",
+            "type": "levelds"
+          },
+          "mountpoint": "/",
+          "prefix": "leveldb.datastore",
+          "type": "measure"
+        }
+      ],
+      "type": "mount"
+    },
+    "StorageGCWatermark": 90,
+    "StorageMax": "10GB"
+  },
+  "Discovery": {
+    "MDNS": {
+      "Enabled": false,
+      "Interval": 10
+    }
+  },
+  "Dropbox-api-token": "",
+  "Experimental": {
+    "FilestoreEnabled": false,
+    "Libp2pStreamMounting": false,
+    "ShardingEnabled": false
+  },
+  "Gateway": {
+    "HTTPHeaders": null,
+    "PathPrefixes": [],
+    "RootRedirect": "",
+    "Writable": false
+  },
+  "Identity": {
+    "PeerID": ""
+  },
+  "Ipns": {
+    "QuerySize": 5,
+    "RecordLifetime": "7d",
+    "RepublishPeriod": "24h",
+    "ResolveCacheSize": 128,
+    "UsePersistentCache": true
+  },
+  "JSON-API": {
+    "AllowedIPs": [],
+    "Authenticated": true,
+    "CORS": "*",
+    "Enabled": true,
+    "HTTPHeaders": null,
+    "Password": "77c9c10fe02348165bfb45d2a896c5bc0dfaae7cd2a0607edc08b381efd8fd59",
+    "SSL": false,
+    "SSLCert": "",
+    "SSLKey": "",
+    "Username": "yourUsername"
+  },
+  "Mounts": {
+    "FuseAllowOther": false,
+    "IPFS": "/ipfs",
+    "IPNS": "/ipns"
+  },
+  "Reprovider": {
+    "Interval": "",
+    "Strategy": ""
+  },
+  "RepublishInterval": "24h",
+  "Resolvers": {
+    ".eth": "",
+    ".id": "https://resolver.onename.com/"
+  },
+  "SupernodeRouting": {
+    "Servers": null
+  },
+  "Swarm": {
+    "AddrFilters": null,
+    "DisableBandwidthMetrics": false,
+    "DisableNatPortMap": false,
+    "DisableRelay": false,
+    "EnableRelayHop": false
+  },
+  "Tor-config": {
+    "Password": "",
+    "TorControl": ""
+  },
+  "Wallet": {
+    "Binary": "",
+    "FeeAPI": "https://btc.fees.openbazaar.org",
+    "HighFeeDefault": 160,
+    "LowFeeDefault": 20,
+    "MaxFee": 2000,
+    "MediumFeeDefault": 60,
+    "RPCPassword": "",
+    "RPCUser": "",
+    "TrustedPeer": "",
+    "Type": "bitcoincash"
+  }
+}
+
