@@ -19,6 +19,7 @@ go get github.com/OpenBazaar/openbazaar-go
 
 # Initialize OB
 cd $GOPATH/src/github.com/OpenBazaar/openbazaar-go
+pwd
 echo "Initializing OB"
 go run $GOPATH/src/github.com/OpenBazaar/openbazaar-go/openbazaar.go init
 
