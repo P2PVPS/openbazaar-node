@@ -56,13 +56,17 @@ async function getNotifications (config) {
       json: true, // Automatically stringifies the body to JSON
       headers: {
         Authorization: config.apiCredentials
-      }
+      },
+      //resolveWithFullResponse: true
     }
+    //const results = await rp(options)
+    //console.log(`results: ${JSON.stringify(results, null, 2)}`)
 
     return rp(options)
+    //return results
   } catch (err) {
-    config.logr.error(`Error in openbazaar.js/getNotifications(): ${err}`)
-    config.logr.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    console.error(`Error in openbazaar.js/getNotifications(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
     throw err
   }
 }
@@ -96,8 +100,8 @@ async function fulfillOrder (config, body) {
 
     return rp(options)
   } catch (err) {
-    config.logr.error(`Error in openbazaar.js/fulfillOrder(): ${err}`)
-    config.logr.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    console.error(`Error in openbazaar.js/fulfillOrder(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
     throw err
   }
 }
@@ -118,8 +122,8 @@ async function getListings (config) {
 
     return rp(options)
   } catch (err) {
-    config.logr.error(`Error in openbazaar.js/getListings(): ${err}`)
-    config.logr.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    console.error(`Error in openbazaar.js/getListings(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
     throw err
   }
 }
@@ -139,11 +143,28 @@ function createListing (config, listingData) {
   return rp(options)
 }
 
+// Create a profile for a new store
+function createProfile (config, profileData) {
+  const options = {
+    method: 'POST',
+    uri: `${config.server}:${config.obPort}/ob/profile/`,
+    body: profileData,
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials
+    },
+    resolveWithFullResponse: true
+  }
+
+  return rp(options)
+}
+
 module.exports = {
   getOBAuth,
   getNotifications,
   markNotificationAsRead,
   fulfillOrder,
   getListings,
-  createListing
+  createListing,
+  createProfile
 }

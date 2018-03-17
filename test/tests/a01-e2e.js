@@ -16,7 +16,9 @@ describe('Authentication', () => {
   describe('getOBAuth()', () => {
     it('should generate an authorization header.', async () => {
       try {
-        const apiCredentials = ob.getOBAuth(OB_USERNAME, OB_PASSWORD)
+        config.clientId = OB_USERNAME
+        config.clientSecret = OB_PASSWORD
+        const apiCredentials = ob.getOBAuth(config)
 
         // console.log(`apiCredentials: ${JSON.stringify(apiCredentials, null, 2)}`)
 
@@ -32,13 +34,66 @@ describe('Authentication', () => {
   })
 })
 
+describe('Notifications', () => {
+  describe('getNotifications()', () => {
+    it('should return an array of notifications.', async () => {
+      const notifications = await ob.getNotifications(config)
+
+      // console.log(`test notifications: ${JSON.stringify(notifications, null, 2)}`)
+
+      assert.isArray(notifications.notifications, 'Returns an array')
+      assert.isNumber(notifications.total, 'Returns a total of notifications')
+    })
+  })
+})
+
+/*
+describe('Create Profile', () => {
+  describe('Generate a new profile for the new store.', () => {
+    it('should generate a new profile', async () => {
+      const profileData = {
+        'handle': 'drwasho',
+        'name': 'Washington Sanchez',
+        'location': 'Brisbane',
+        'about': 'The Dude',
+        'shortDescription': 'Yo',
+        'contactInfo': {
+          'website': 'openbazaar.org',
+          'email': 'drwasho@openbazaar.org',
+          'phoneNumber': '12345'
+        },
+        'nsfw': false,
+        'vendor': true,
+        'moderator': false,
+        'colors': {
+          'primary': '#000000',
+          'secondary': '#FFD700',
+          'text': '#ffffff',
+          'highlight': '#123ABC',
+          'highlightText': '#DEAD00'
+        }
+      }
+
+      const profile = await ob.createProfile(config, profileData)
+
+      console.log(`profile: ${JSON.stringify(profile, null, 2)}`)
+
+      // Save the credentials for use in other tests.
+      // config.apiCredentials = apiCredentials
+
+      assert(true, 'test')
+    })
+  })
+})
+*/
+
+/*
 describe('Create Listing', () => {
   describe('createListing()', () => {
     it('should create a listing.', async () => {
-
       const now = new Date()
       const oneDay = 60000 * 60 * 24
-      const thirtyDaysFromNow = new Date(now.getTime() + oneDay*30)
+      const thirtyDaysFromNow = new Date(now.getTime() + oneDay * 30)
 
       const listingData = {
         coupons: [
@@ -85,8 +140,8 @@ describe('Create Listing', () => {
 
       console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
-      assert(1,'test')
-      
+      assert(1, 'test')
     })
   })
 })
+*/
