@@ -13,7 +13,6 @@ services:
   - docker
 
 before_install:
-#  - ./test/setup/setup_script
   - docker pull openbazaar/server:v0.11.1
   - docker run --rm -v $(pwd)/test/obdata:/var/lib/openbazaar openbazaar/server:v0.11.1 init -d /var/lib/openbazaar
   - sudo cp test/setup/config test/obdata/

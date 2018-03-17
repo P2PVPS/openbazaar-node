@@ -4,16 +4,13 @@
   "description": "A node.js library for the OpenBazaar API. Uses async/await ECMA2017",
   "main": "openbazaar.js",
   "scripts": {
-    "test": "echo no tests"
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha test/tests/*.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/P2PVPS/openbazaar-node.git"
   },
-  "keywords": [
-    "openbazaar",
-    "api"
-  ],
+  "keywords": ["openbazaar", "api"],
   "author": "Chris Troutner",
   "license": "MIT",
   "bugs": {
