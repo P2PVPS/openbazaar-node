@@ -13,10 +13,11 @@ Functions implemented in this library:
 * getOBAuth - Generate an authorization header for REST API calls to the OB store.
 * createProfile - Create a profile for the OB store.
 * createListings - Create a new listing in the store.
+* getListings - Get all product listings in the OB store.
 * getNotifications - Get notifications
 * markNotificationAsRead - Mark a notification as read
 * fulfillOrder - Fulfill an order
-* getListings - Get all product listings in the OB store.
+
 
 
 
