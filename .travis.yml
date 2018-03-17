@@ -18,4 +18,4 @@ before_install:
 #  - ./test/setup/setup_script
   - git clone https://github.com/OpenBazaar/openbazaar-go
   - cd openbazaar-go
-  - docker-compose up
+  - docker-compose up server
