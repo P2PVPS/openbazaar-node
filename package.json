@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/P2PVPS/openbazaar-node.git"
   },
-  "keywords": ["openbazaar", "api"],
+  "keywords": [
+    "openbazaar",
+    "api"
+  ],
   "author": "Chris Troutner",
   "license": "MIT",
   "bugs": {
@@ -20,5 +23,13 @@
   "dependencies": {
     "request": "^2.85.0",
     "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^5.0.4"
   }
 }
