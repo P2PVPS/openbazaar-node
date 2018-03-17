@@ -34,8 +34,13 @@ Include this library in the node.js application dependencies with:
 
 `const openbazaar = require("openbazaar-node")`
 
-Most functions expect to be passed a config object. Here is an example of
-generating a config object:
+Before you can make API calls to your OpenBazaar server, you'll need to make a
+few changes to the `config` file used by OpenBazaar. On Linux systems, this
+file is located in `~/.openbazaar2.0/`. An example config file is provided
+in [test/setup/config](test/setup/config).
+
+Most functions in this library expect to be passed a config object.
+Here is an example of generating a config object:
 
 ```
 // Generate api credentials for OpenBazaar.
@@ -50,6 +55,9 @@ let config = {
 ```
 
 ## Testing
+The tests in the [test/tests](test/tests) directory also provide code examples of
+how to use this library to interact with an OpenBazaar server.
+
 **Warning:** Tests are *not* intended to be run against a production server. Tests
 make live API calls against a server and could potentially screw up an existing
 OpenBazaar server.

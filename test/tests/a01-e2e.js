@@ -80,7 +80,6 @@ describe('Create Profile', () => {
         assert(profile.handle === 'drwasho', 'Correct handle returned')
         assert(profile.contactInfo.website === 'openbazaar.org', 'Correct contact info returned')
       } catch (err) {
-        
         if (err.statusCode === 409) {
           assert(err.response.body.reason === 'Profile already exists. Use PUT.',
             'Profile already exists. Correct error message returned')
@@ -92,7 +91,7 @@ describe('Create Profile', () => {
   })
 })
 
-/*
+
 describe('Create Listing', () => {
   describe('createListing()', () => {
     it('should create a listing.', async () => {
@@ -149,4 +148,3 @@ describe('Create Listing', () => {
     })
   })
 })
-*/
