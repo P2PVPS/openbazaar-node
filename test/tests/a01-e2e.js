@@ -5,7 +5,6 @@ const ob = require('../../openbazaar.js')
 const config = {
   apiCredentials: '',
   server: 'http://localhost',
-  port: 4002,
   obPort: 4002
 }
 
@@ -80,7 +79,6 @@ describe('Create Profile', () => {
         assert(profile.handle === 'drwasho', 'Correct handle returned')
         assert(profile.contactInfo.website === 'openbazaar.org', 'Correct contact info returned')
       } catch (err) {
-        
         if (err.statusCode === 409) {
           assert(err.response.body.reason === 'Profile already exists. Use PUT.',
             'Profile already exists. Correct error message returned')
@@ -92,7 +90,6 @@ describe('Create Profile', () => {
   })
 })
 
-/*
 describe('Create Listing', () => {
   describe('createListing()', () => {
     it('should create a listing.', async () => {
@@ -142,11 +139,9 @@ describe('Create Listing', () => {
       }
 
       const result = await ob.createListing(config, listingData)
+      //console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
-      console.log(`result: ${JSON.stringify(result, null, 2)}`)
-
-      assert(1, 'test')
+      assert.property(result, 'slug', 'Returns object with a property of slug')
     })
   })
 })
-*/
