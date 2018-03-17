@@ -37,7 +37,8 @@ Include this library in the node.js application dependencies with:
 Before you can make API calls to your OpenBazaar server, you'll need to make a
 few changes to the `config` file used by OpenBazaar. On Linux systems, this
 file is located in `~/.openbazaar2.0/`. An example config file is provided
-in [test/setup/config](test/setup/config).
+in [test/setup/config](test/setup/config). Note: the example config
+file is intended only for testing and is insecure by design.
 
 Most functions in this library expect to be passed a config object.
 Here is an example of generating a config object:
