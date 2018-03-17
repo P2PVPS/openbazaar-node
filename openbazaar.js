@@ -28,114 +28,133 @@
 
 */
 
-"use strict";
+'use strict'
 
 // Dependencies
-const rp = require("request-promise");
+const rp = require('request-promise')
 
 // Generate an auth key for the header. Required fall all OpenBazaar API calls.
-function getOBAuth(config) {
-  //debugger;
+function getOBAuth (config) {
+  // debugger;
 
-  //Encoding as per API Specification.
-  const combinedCredential = `${config.clientId}:${config.clientSecret}`;
-  //var base64Credential = window.btoa(combinedCredential);
-  const base64Credential = Buffer.from(combinedCredential).toString("base64");
-  const readyCredential = `Basic ${base64Credential}`;
+  // Encoding as per API Specification.
+  const combinedCredential = `${config.clientId}:${config.clientSecret}`
+  // var base64Credential = window.btoa(combinedCredential);
+  const base64Credential = Buffer.from(combinedCredential).toString('base64')
+  const readyCredential = `Basic ${base64Credential}`
 
-  return readyCredential;
+  return readyCredential
 }
 
 // This function returns a Promise that resolves to a list of notifications
 // recieved by the OB store.
-async function getNotifications(config) {
+async function getNotifications (config) {
   try {
     const options = {
-      method: "GET",
+      method: 'GET',
       uri: `${config.server}:${config.obPort}/ob/notifications`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
-        Authorization: config.apiCredentials,
-      },
-    };
+        Authorization: config.apiCredentials
+      }
+      // resolveWithFullResponse: true
+    }
 
-    return rp(options);
+    return rp(options)
+
   } catch (err) {
-    config.logr.error(`Error in openbazaar.js/getNotifications(): ${err}`);
-    config.logr.error(`Error stringified: ${JSON.stringify(err, null, 2)}`);
-    throw err;
+    console.error(`Error in openbazaar.js/getNotifications(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    throw err
   }
 }
 
-async function markNotificationAsRead(config, body) {
+async function markNotificationAsRead (config, body) {
   const options = {
-    method: "POST",
+    method: 'POST',
     uri: `${config.server}:${config.obPort}/ob/marknotificationasread/${body.notificationId}`,
     body: {},
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
-  };
+      Authorization: config.apiCredentials
+    }
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Mark an order as 'Fulfilled'.
-async function fulfillOrder(config, body) {
+async function fulfillOrder (config, body) {
   try {
     const options = {
-      method: "POST",
+      method: 'POST',
       uri: `${config.server}:${config.obPort}/ob/orderfulfillment`,
       body: body,
       json: true, // Automatically stringifies the body to JSON
       headers: {
-        Authorization: config.apiCredentials,
-      },
-    };
+        Authorization: config.apiCredentials
+      }
+    }
 
-    return rp(options);
+    return rp(options)
   } catch (err) {
-    config.logr.error(`Error in openbazaar.js/fulfillOrder(): ${err}`);
-    config.logr.error(`Error stringified: ${JSON.stringify(err, null, 2)}`);
-    throw err;
+    console.error(`Error in openbazaar.js/fulfillOrder(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    throw err
   }
 }
 
 // Returns a promise that resolves into an array of store listings.
-async function getListings(config) {
-  //debugger;
+async function getListings (config) {
+  // debugger;
 
   try {
     const options = {
-      method: "GET",
+      method: 'GET',
       uri: `${config.server}:${config.obPort}/ob/listings`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
-        Authorization: config.apiCredentials,
-      },
-    };
+        Authorization: config.apiCredentials
+      }
+    }
 
-    return rp(options);
+    return rp(options)
   } catch (err) {
-    config.logr.error(`Error in openbazaar.js/getListings(): ${err}`);
-    config.logr.error(`Error stringified: ${JSON.stringify(err, null, 2)}`);
-    throw err;
+    console.error(`Error in openbazaar.js/getListings(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    throw err
   }
 }
 
-function createListing(config, listingData) {
+// Create a listing in the OB store.
+function createListing (config, listingData) {
   const options = {
-    method: "POST",
+    method: 'POST',
     uri: `${config.server}:${config.obPort}/ob/listing/`,
     body: listingData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
-  };
+      Authorization: config.apiCredentials
+    }
+  }
 
-  return rp(options);
+  return rp(options)
+}
+
+// Create a profile for a new store
+function createProfile (config, profileData) {
+  const options = {
+    method: 'POST',
+    uri: `${config.server}:${config.obPort}/ob/profile/`,
+    body: profileData,
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials
+    },
+    //resolveWithFullResponse: true
+  }
+
+  return rp(options)
 }
 
 module.exports = {
@@ -144,5 +163,6 @@ module.exports = {
   markNotificationAsRead,
   fulfillOrder,
   getListings,
-  createListing
-};
+  createListing,
+  createProfile
+}
