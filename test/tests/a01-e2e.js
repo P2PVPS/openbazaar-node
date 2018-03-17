@@ -90,7 +90,7 @@ describe('Create Profile', () => {
   })
 })
 
-describe('Create Listing', () => {
+describe('Listing', () => {
   describe('createListing()', () => {
     it('should create a listing.', async () => {
       const now = new Date()
@@ -139,9 +139,19 @@ describe('Create Listing', () => {
       }
 
       const result = await ob.createListing(config, listingData)
-      //console.log(`result: ${JSON.stringify(result, null, 2)}`)
+      // console.log(`result: ${JSON.stringify(result, null, 2)}`)
 
       assert.property(result, 'slug', 'Returns object with a property of slug')
+    })
+  })
+
+  describe('getListings()', () => {
+    it('should return an array of store listings', async () => {
+      const listings = await ob.getListings(config)
+
+      // console.log(`listings: ${JSON.stringify(listings, null, 2)}`)
+
+      assert.isArray(listings, 'Returns an array')
     })
   })
 })
