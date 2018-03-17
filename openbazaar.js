@@ -56,14 +56,12 @@ async function getNotifications (config) {
       json: true, // Automatically stringifies the body to JSON
       headers: {
         Authorization: config.apiCredentials
-      },
-      //resolveWithFullResponse: true
+      }
+      // resolveWithFullResponse: true
     }
-    //const results = await rp(options)
-    //console.log(`results: ${JSON.stringify(results, null, 2)}`)
 
     return rp(options)
-    //return results
+
   } catch (err) {
     console.error(`Error in openbazaar.js/getNotifications(): ${err}`)
     console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
@@ -153,7 +151,7 @@ function createProfile (config, profileData) {
     headers: {
       Authorization: config.apiCredentials
     },
-    resolveWithFullResponse: true
+    //resolveWithFullResponse: true
   }
 
   return rp(options)

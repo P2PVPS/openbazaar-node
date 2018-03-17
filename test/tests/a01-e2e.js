@@ -47,45 +47,50 @@ describe('Notifications', () => {
   })
 })
 
-/*
 describe('Create Profile', () => {
   describe('Generate a new profile for the new store.', () => {
     it('should generate a new profile', async () => {
-      const profileData = {
-        'handle': 'drwasho',
-        'name': 'Washington Sanchez',
-        'location': 'Brisbane',
-        'about': 'The Dude',
-        'shortDescription': 'Yo',
-        'contactInfo': {
-          'website': 'openbazaar.org',
-          'email': 'drwasho@openbazaar.org',
-          'phoneNumber': '12345'
-        },
-        'nsfw': false,
-        'vendor': true,
-        'moderator': false,
-        'colors': {
-          'primary': '#000000',
-          'secondary': '#FFD700',
-          'text': '#ffffff',
-          'highlight': '#123ABC',
-          'highlightText': '#DEAD00'
+      try {
+        const profileData = {
+          'handle': 'drwasho',
+          'name': 'Washington Sanchez',
+          'location': 'Brisbane',
+          'about': 'The Dude',
+          'shortDescription': 'Yo',
+          'contactInfo': {
+            'website': 'openbazaar.org',
+            'email': 'drwasho@openbazaar.org',
+            'phoneNumber': '12345'
+          },
+          'nsfw': false,
+          'vendor': true,
+          'moderator': false,
+          'colors': {
+            'primary': '#000000',
+            'secondary': '#FFD700',
+            'text': '#ffffff',
+            'highlight': '#123ABC',
+            'highlightText': '#DEAD00'
+          }
+        }
+
+        const profile = await ob.createProfile(config, profileData)
+        // console.log(`profile: ${JSON.stringify(profile, null, 2)}`)
+
+        assert(profile.handle === 'drwasho', 'Correct handle returned')
+        assert(profile.contactInfo.website === 'openbazaar.org', 'Correct contact info returned')
+      } catch (err) {
+        
+        if (err.statusCode === 409) {
+          assert(err.response.body.reason === 'Profile already exists. Use PUT.',
+            'Profile already exists. Correct error message returned')
+        } else {
+          throw err
         }
       }
-
-      const profile = await ob.createProfile(config, profileData)
-
-      console.log(`profile: ${JSON.stringify(profile, null, 2)}`)
-
-      // Save the credentials for use in other tests.
-      // config.apiCredentials = apiCredentials
-
-      assert(true, 'test')
     })
   })
 })
-*/
 
 /*
 describe('Create Listing', () => {
