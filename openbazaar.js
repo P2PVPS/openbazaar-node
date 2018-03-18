@@ -61,7 +61,6 @@ async function getNotifications (config) {
     }
 
     return rp(options)
-
   } catch (err) {
     console.error(`Error in openbazaar.js/getNotifications(): ${err}`)
     console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
@@ -141,6 +140,22 @@ function createListing (config, listingData) {
   return rp(options)
 }
 
+function removeListing (config, slug) {
+  const options = {
+    method: 'DELETE',
+    uri: `${config.server}:${config.obPort}/ob/listing/${slug}`,
+    body: {
+      slug: slug
+    },
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials
+    }
+  }
+
+  return rp(options)
+}
+
 // Create a profile for a new store
 function createProfile (config, profileData) {
   const options = {
@@ -150,8 +165,8 @@ function createProfile (config, profileData) {
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
-    },
-    //resolveWithFullResponse: true
+    }
+    // resolveWithFullResponse: true
   }
 
   return rp(options)
@@ -164,5 +179,6 @@ module.exports = {
   fulfillOrder,
   getListings,
   createListing,
+  removeListing,
   createProfile
 }
