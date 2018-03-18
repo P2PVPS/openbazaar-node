@@ -140,6 +140,7 @@ describe('Listing', () => {
 
       const result = await ob.createListing(config, listingData)
       // console.log(`result: ${JSON.stringify(result, null, 2)}`)
+      config.slug = result.slug
 
       assert.property(result, 'slug', 'Returns object with a property of slug')
     })
@@ -152,6 +153,17 @@ describe('Listing', () => {
       // console.log(`listings: ${JSON.stringify(listings, null, 2)}`)
 
       assert.isArray(listings, 'Returns an array')
+    })
+  })
+
+  describe('removeListing()', () => {
+    it('should return an empty object.', async () => {
+      const result = await ob.removeListing(config, config.slug)
+
+      // console.log(`result: ${JSON.stringify(result, null, 2)}`)
+
+      assert.isObject(result, 'Returns an object')
+      assert.isEmpty(result, 'Object is empty.')
     })
   })
 })
