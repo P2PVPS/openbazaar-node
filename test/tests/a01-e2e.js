@@ -5,6 +5,7 @@ const ob = require('../../openbazaar.js')
 const config = {
   apiCredentials: '',
   server: 'http://localhost',
+  // server: 'http://p2pvps.net',
   obPort: 4002
 }
 
@@ -19,7 +20,7 @@ describe('Authentication', () => {
         config.clientSecret = OB_PASSWORD
         const apiCredentials = ob.getOBAuth(config)
 
-        // console.log(`apiCredentials: ${JSON.stringify(apiCredentials, null, 2)}`)
+        console.log(`apiCredentials: ${JSON.stringify(apiCredentials, null, 2)}`)
 
         // Save the credentials for use in other tests.
         config.apiCredentials = apiCredentials

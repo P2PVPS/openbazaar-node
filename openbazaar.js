@@ -17,7 +17,6 @@
   generating a config object:
 
   // Generate api credentials for OpenBazaar.
-  const apiCredentials = openbazaar.getOBAuth(OB_USERNAME, OB_PASSWORD);
   let config = {
     // Config object passed to library functions.
     apiCredentials: apiCredentials,
@@ -25,6 +24,7 @@
     port: SERVER_PORT,
     obPort: OB_SERVER_PORT
   };
+  const apiCredentials = openbazaar.getOBAuth(config);
 
 */
 
