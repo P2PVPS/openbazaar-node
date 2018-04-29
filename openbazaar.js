@@ -172,6 +172,81 @@ function createProfile (config, profileData) {
   return rp(options)
 }
 
+// Get wallet balance
+function getWalletBalance (config) {
+  const options = {
+    method: 'GET',
+    uri: `${config.server}:${config.obPort}/wallet/balance`,
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials
+    }
+    // resolveWithFullResponse: true
+  }
+
+  return rp(options)
+}
+
+// Get wallet balance
+function getExchangeRate (config) {
+  const options = {
+    method: 'GET',
+    uri: `${config.server}:${config.obPort}/ob/exchangerate`,
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials
+    }
+    // resolveWithFullResponse: true
+  }
+
+  return rp(options)
+}
+
+// Get an address to recieve money
+function getAddress (config) {
+  const options = {
+    method: 'GET',
+    uri: `${config.server}:${config.obPort}/wallet/address`,
+    json: true, // Automatically stringifies the body to JSON
+    headers: {
+      Authorization: config.apiCredentials
+    }
+    // resolveWithFullResponse: true
+  }
+
+  return rp(options)
+}
+
+// Send Money (Will send whatever cryptocurrency the server is configured for).
+/*
+  moneyObj:
+    address: Address for the selected cryptocurrency.
+    amount: Amount in satoshis
+    feeLevel: 'NORMAL' or 'ECONOMIC'. Defaults to 'ECONOMIC'
+    memo: Optional note.
+*/
+function sendMoney (config, moneyObj) {
+  const defaultObj = {
+    feeLevel: 'ECONOMIC'
+  }
+
+  // Add default values to the moneyObj if they are not already assigned.
+  Object.assign(moneyObj, defaultObj)
+
+  const options = {
+    method: 'POST',
+    uri: `${config.server}:${config.obPort}/wallet/spend`,
+    json: true, // Automatically stringifies the body to JSON
+    body: moneyObj,
+    headers: {
+      Authorization: config.apiCredentials
+    }
+    // resolveWithFullResponse: true
+  }
+
+  return rp(options)
+}
+
 module.exports = {
   getOBAuth,
   getNotifications,
@@ -180,5 +255,9 @@ module.exports = {
   getListings,
   createListing,
   removeListing,
-  createProfile
+  createProfile,
+  getWalletBalance,
+  getExchangeRate,
+  getAddress,
+  sendMoney
 }
