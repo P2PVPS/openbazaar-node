@@ -1,3 +1,5 @@
 node_modules
 obdata
 .cookie
+coverage/**
+.nyc_output/**
