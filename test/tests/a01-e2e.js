@@ -168,3 +168,83 @@ describe('Listing', () => {
     })
   })
 })
+
+describe('Wallet', () => {
+  describe('getWalletBalance()', () => {
+    it('should return the balance of the wallet.', async () => {
+      const result = await ob.getWalletBalance(config)
+
+      // console.log(`getWalletBalance() result: ${JSON.stringify(result, null, 2)}`)
+
+      assert.isNumber(result.confirmed, 'Confirmed balance is a number')
+      assert.isNumber(result.unconfirmed, 'Unconfirmed balance is a number')
+    })
+  })
+
+  describe('getExchangeRate()', () => {
+    it('should return the exchange rate.', async () => {
+      const result = await ob.getExchangeRate(config)
+
+      // console.log(`getExchangeRate() result: ${JSON.stringify(result, null, 2)}`)
+
+      assert.isNumber(result.USD, 'Get USD exchange rate.')
+    })
+  })
+
+  describe('getAddress()', () => {
+    it('should return the public cryptocoin address', async () => {
+      const result = await ob.getAddress(config)
+
+      // console.log(`getAddress() result: ${JSON.stringify(result, null, 2)}`)
+
+      assert.isNotEmpty(result.address, 'Address is returned')
+    })
+  })
+
+  describe('sendMoney()', () => {
+    it('should send $0.05 in cryptocurrency to self.', async () => {
+      const walletBalance = await ob.getWalletBalance(config)
+      const address = await ob.getAddress(config)
+
+      const exchangeRate = await ob.getExchangeRate(config)
+      const usdExchangeRate = exchangeRate.USD
+      const bchPerDollar = 1 / usdExchangeRate
+      // Five and Ten cents in Satoshis.
+      const fiveCents = roundSatoshis(bchPerDollar * 0.05)
+      const tenCents = fiveCents * 2
+
+      if (walletBalance.confirmed < tenCents) {
+        assert(1, 1, 'Test skipped due to lack of balance.')
+        return
+      }
+
+      const moneyObj = {
+        address: address.address,
+        amount: fiveCents,
+        feeLevel: 'ECONOMIC',
+        memo: 'openbazaar-node test'
+      }
+
+      const result = await ob.sendMoney(config, moneyObj)
+
+      // console.log(`sendMoney() result: ${JSON.stringify(result, null, 2)}`)
+
+      assert.isNumber(result.amount, 'Total amount of Satoshis sent')
+      assert.isNumber(result.confirmedBalance, 'New wallet balance.')
+      assert(result.memo, 'openbazaar-node test', 'Memo is included correctly.')
+      assert.isNotEmpty(result.timestamp, 'Timestamp is included')
+      assert.isNumber(result.unconfirmedBalance, 'Unconfirmed balance is a number.')
+    })
+  })
+})
+
+/*
+ These are support functions.
+*/
+
+// Rounds the floating point val to a precise number of satoshis
+function roundSatoshis (val) {
+  const satoshis = Number(val) * 100000000
+  const roundedSatoshis = Math.round(satoshis)
+  return roundedSatoshis
+}
