@@ -4,8 +4,8 @@ const ob = require('../../openbazaar.js')
 
 const config = {
   apiCredentials: '',
-  server: 'http://localhost',
-  // server: 'http://p2pvps.net',
+  obServer: 'http://localhost',
+  // obServer: 'http://p2pvps.net',
   obPort: 4002
 }
 

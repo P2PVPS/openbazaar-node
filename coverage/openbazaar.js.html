@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>28/42</span>
+        <span class='fraction'>24/42</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>10/12</span>
+        <span class='fraction'>9/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">57.14% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>28/42</span>
+        <span class='fraction'>24/42</span>
       </div>
     </div>
     <p class="quiet">
@@ -537,25 +537,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -594,7 +594,7 @@
   let config = {
     // Config object passed to library functions.
     apiCredentials: apiCredentials,
-    server: SERVER_URL,
+    obServer: SERVER_URL,
     port: SERVER_PORT,
     obPort: OB_SERVER_PORT
   };
@@ -626,7 +626,7 @@ async function getNotifications (config) {
   try {
     const options = {
       method: 'GET',
-      uri: `${config.server}:${config.obPort}/ob/notifications`,
+      uri: `${config.obServer}:${config.obPort}/ob/notifications`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
         Authorization: config.apiCredentials
@@ -645,7 +645,7 @@ async function getNotifications (config) {
 async function <span class="fstat-no" title="function not covered" >markNotificationAsRead </span>(config, body) {
   const options = <span class="cstat-no" title="statement not covered" >{</span>
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/ob/marknotificationasread/${body.notificationId}`,
+    uri: `${config.obServer}:${config.obPort}/ob/marknotificationasread/${body.notificationId}`,
     body: {},
     json: true, // Automatically stringifies the body to JSON
     headers: {
@@ -661,7 +661,7 @@ async function <span class="fstat-no" title="function not covered" >fulfillOrder
 <span class="cstat-no" title="statement not covered" >  try {</span>
     const options = <span class="cstat-no" title="statement not covered" >{</span>
       method: 'POST',
-      uri: `${config.server}:${config.obPort}/ob/orderfulfillment`,
+      uri: `${config.obServer}:${config.obPort}/ob/orderfulfillment`,
       body: body,
       json: true, // Automatically stringifies the body to JSON
       headers: {
@@ -684,7 +684,7 @@ async function getListings (config) {
   try {
     const options = {
       method: 'GET',
-      uri: `${config.server}:${config.obPort}/ob/listings`,
+      uri: `${config.obServer}:${config.obPort}/ob/listings`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
         Authorization: config.apiCredentials
@@ -703,7 +703,7 @@ async function getListings (config) {
 function createListing (config, listingData) {
   const options = {
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/ob/listing/`,
+    uri: `${config.obServer}:${config.obPort}/ob/listing/`,
     body: listingData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
@@ -717,7 +717,7 @@ function createListing (config, listingData) {
 function removeListing (config, slug) {
   const options = {
     method: 'DELETE',
-    uri: `${config.server}:${config.obPort}/ob/listing/${slug}`,
+    uri: `${config.obServer}:${config.obPort}/ob/listing/${slug}`,
     body: {
       slug: slug
     },
@@ -734,7 +734,7 @@ function removeListing (config, slug) {
 function createProfile (config, profileData) {
   const options = {
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/ob/profile/`,
+    uri: `${config.obServer}:${config.obPort}/ob/profile/`,
     body: profileData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
@@ -750,7 +750,7 @@ function createProfile (config, profileData) {
 function getWalletBalance (config) {
   const options = {
     method: 'GET',
-    uri: `${config.server}:${config.obPort}/wallet/balance`,
+    uri: `${config.obServer}:${config.obPort}/wallet/balance`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
@@ -765,7 +765,7 @@ function getWalletBalance (config) {
 function getExchangeRate (config) {
   const options = {
     method: 'GET',
-    uri: `${config.server}:${config.obPort}/ob/exchangerate`,
+    uri: `${config.obServer}:${config.obPort}/ob/exchangerate`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
@@ -780,7 +780,7 @@ function getExchangeRate (config) {
 function getAddress (config) {
   const options = {
     method: 'GET',
-    uri: `${config.server}:${config.obPort}/wallet/address`,
+    uri: `${config.obServer}:${config.obPort}/wallet/address`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
@@ -799,17 +799,17 @@ function getAddress (config) {
     feeLevel: 'NORMAL' or 'ECONOMIC'. Defaults to 'ECONOMIC'
     memo: Optional note.
 */
-function sendMoney (config, moneyObj) {
-  const defaultObj = {
+function <span class="fstat-no" title="function not covered" >sendMoney </span>(config, moneyObj) {
+  const defaultObj = <span class="cstat-no" title="statement not covered" >{</span>
     feeLevel: 'ECONOMIC'
   }
 &nbsp;
   // Add default values to the moneyObj if they are not already assigned.
-  Object.assign(moneyObj, defaultObj)
+<span class="cstat-no" title="statement not covered" >  Object.assign(moneyObj, defaultObj)</span>
 &nbsp;
-  const options = {
+  const options = <span class="cstat-no" title="statement not covered" >{</span>
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/wallet/spend`,
+    uri: `${config.obServer}:${config.obPort}/wallet/spend`,
     json: true, // Automatically stringifies the body to JSON
     body: moneyObj,
     headers: {
@@ -818,7 +818,7 @@ function sendMoney (config, moneyObj) {
     // resolveWithFullResponse: true
   }
 &nbsp;
-  return rp(options)
+<span class="cstat-no" title="statement not covered" >  return rp(options)</span>
 }
 &nbsp;
 module.exports = {
@@ -841,7 +841,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Apr 29 2018 14:27:09 GMT-0400 (EDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu May 31 2018 20:51:48 GMT-0700 (PDT)
 </div>
 </div>
 <script src="prettify.js"></script>

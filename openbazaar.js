@@ -20,7 +20,7 @@
   let config = {
     // Config object passed to library functions.
     apiCredentials: apiCredentials,
-    server: SERVER_URL,
+    obServer: SERVER_URL,
     port: SERVER_PORT,
     obPort: OB_SERVER_PORT
   };
@@ -52,7 +52,7 @@ async function getNotifications (config) {
   try {
     const options = {
       method: 'GET',
-      uri: `${config.server}:${config.obPort}/ob/notifications`,
+      uri: `${config.obServer}:${config.obPort}/ob/notifications`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
         Authorization: config.apiCredentials
@@ -71,7 +71,7 @@ async function getNotifications (config) {
 async function markNotificationAsRead (config, body) {
   const options = {
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/ob/marknotificationasread/${body.notificationId}`,
+    uri: `${config.obServer}:${config.obPort}/ob/marknotificationasread/${body.notificationId}`,
     body: {},
     json: true, // Automatically stringifies the body to JSON
     headers: {
@@ -87,7 +87,7 @@ async function fulfillOrder (config, body) {
   try {
     const options = {
       method: 'POST',
-      uri: `${config.server}:${config.obPort}/ob/orderfulfillment`,
+      uri: `${config.obServer}:${config.obPort}/ob/orderfulfillment`,
       body: body,
       json: true, // Automatically stringifies the body to JSON
       headers: {
@@ -110,7 +110,7 @@ async function getListings (config) {
   try {
     const options = {
       method: 'GET',
-      uri: `${config.server}:${config.obPort}/ob/listings`,
+      uri: `${config.obServer}:${config.obPort}/ob/listings`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
         Authorization: config.apiCredentials
@@ -129,7 +129,7 @@ async function getListings (config) {
 function createListing (config, listingData) {
   const options = {
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/ob/listing/`,
+    uri: `${config.obServer}:${config.obPort}/ob/listing/`,
     body: listingData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
@@ -143,7 +143,7 @@ function createListing (config, listingData) {
 function removeListing (config, slug) {
   const options = {
     method: 'DELETE',
-    uri: `${config.server}:${config.obPort}/ob/listing/${slug}`,
+    uri: `${config.obServer}:${config.obPort}/ob/listing/${slug}`,
     body: {
       slug: slug
     },
@@ -160,7 +160,7 @@ function removeListing (config, slug) {
 function createProfile (config, profileData) {
   const options = {
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/ob/profile/`,
+    uri: `${config.obServer}:${config.obPort}/ob/profile/`,
     body: profileData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
@@ -176,7 +176,7 @@ function createProfile (config, profileData) {
 function getWalletBalance (config) {
   const options = {
     method: 'GET',
-    uri: `${config.server}:${config.obPort}/wallet/balance`,
+    uri: `${config.obServer}:${config.obPort}/wallet/balance`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
@@ -191,7 +191,7 @@ function getWalletBalance (config) {
 function getExchangeRate (config) {
   const options = {
     method: 'GET',
-    uri: `${config.server}:${config.obPort}/ob/exchangerate`,
+    uri: `${config.obServer}:${config.obPort}/ob/exchangerate`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
@@ -206,7 +206,7 @@ function getExchangeRate (config) {
 function getAddress (config) {
   const options = {
     method: 'GET',
-    uri: `${config.server}:${config.obPort}/wallet/address`,
+    uri: `${config.obServer}:${config.obPort}/wallet/address`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
       Authorization: config.apiCredentials
@@ -235,7 +235,7 @@ function sendMoney (config, moneyObj) {
 
   const options = {
     method: 'POST',
-    uri: `${config.server}:${config.obPort}/wallet/spend`,
+    uri: `${config.obServer}:${config.obPort}/wallet/spend`,
     json: true, // Automatically stringifies the body to JSON
     body: moneyObj,
     headers: {
