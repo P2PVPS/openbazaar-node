@@ -5,14 +5,6 @@
 
   This library is for node.js programs using ECMA2017 async/await.
 
-  Functions implemented in this library:
-
-  getOBAuth - Generate an auth header for AJAX calls to the OB store.
-  getNotifications - Get notifications
-  markNotificationAsRead - Mark a notification as read
-  fulfillOrder - Fulfill an order
-  getListings - Get all product listings in the OB store.
-
   Most functions expect to be passed a config object. Here is an example of
   generating a config object:
 
@@ -29,6 +21,21 @@
 */
 
 'use strict'
+
+module.exports = {
+  getOBAuth, // Generate an auth header for AJAX calls to the OB store.
+  getNotifications, // Get notifications
+  markNotificationAsRead, // Mark a notification as read
+  fulfillOrder, // Fulfill an order
+  getListings, // Get all product listings in the OB store.
+  createListing, // Create a new product listing.
+  removeListing, // Remove a product listing.
+  createProfile, // Create an OB store profile.
+  getWalletBalance, // Get the balance of your wallet.
+  getExchangeRate, // Get Exchange Rate in USD
+  getAddress, // Get your wallet address.
+  sendMoney // Send cryptocurrency to an address.
+}
 
 // Dependencies
 const rp = require('request-promise')
@@ -245,19 +252,4 @@ function sendMoney (config, moneyObj) {
   }
 
   return rp(options)
-}
-
-module.exports = {
-  getOBAuth,
-  getNotifications,
-  markNotificationAsRead,
-  fulfillOrder,
-  getListings,
-  createListing,
-  removeListing,
-  createProfile,
-  getWalletBalance,
-  getExchangeRate,
-  getAddress,
-  sendMoney
 }
