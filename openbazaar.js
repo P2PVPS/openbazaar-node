@@ -20,7 +20,7 @@
 
 */
 
-"use strict";
+'use strict'
 
 module.exports = {
   getOBAuth, // Generate an auth header for AJAX calls to the OB store.
@@ -35,194 +35,194 @@ module.exports = {
   getExchangeRate, // Get Exchange Rate in USD
   getAddress, // Get your wallet address.
   sendMoney, // Send cryptocurrency to an address.
-  getOrder, // Get information on an order.
-};
+  getOrder // Get information on an order.
+}
 
 // Dependencies
-const rp = require("request-promise");
+const rp = require('request-promise')
 
 // Generate an auth key for the header. Required fall all OpenBazaar API calls.
-function getOBAuth(config) {
+function getOBAuth (config) {
   // debugger;
 
   // Encoding as per API Specification.
-  const combinedCredential = `${config.clientId}:${config.clientSecret}`;
+  const combinedCredential = `${config.clientId}:${config.clientSecret}`
   // var base64Credential = window.btoa(combinedCredential);
-  const base64Credential = Buffer.from(combinedCredential).toString("base64");
-  const readyCredential = `Basic ${base64Credential}`;
+  const base64Credential = Buffer.from(combinedCredential).toString('base64')
+  const readyCredential = `Basic ${base64Credential}`
 
-  return readyCredential;
+  return readyCredential
 }
 
 // This function returns a Promise that resolves to a list of notifications
 // recieved by the OB store.
-async function getNotifications(config) {
+async function getNotifications (config) {
   try {
     const options = {
-      method: "GET",
+      method: 'GET',
       uri: `${config.obServer}:${config.obPort}/ob/notifications`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
-        Authorization: config.apiCredentials,
-      },
+        Authorization: config.apiCredentials
+      }
       // resolveWithFullResponse: true
-    };
+    }
 
-    return rp(options);
+    return rp(options)
   } catch (err) {
-    console.error(`Error in openbazaar.js/getNotifications(): ${err}`);
-    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`);
-    throw err;
+    console.error(`Error in openbazaar.js/getNotifications(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    throw err
   }
 }
 
-async function markNotificationAsRead(config, body) {
+async function markNotificationAsRead (config, body) {
   const options = {
-    method: "POST",
+    method: 'POST',
     uri: `${config.obServer}:${config.obPort}/ob/marknotificationasread/${body.notificationId}`,
     body: {},
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
-  };
+      Authorization: config.apiCredentials
+    }
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Mark an order as 'Fulfilled'.
-async function fulfillOrder(config, body) {
+async function fulfillOrder (config, body) {
   try {
     const options = {
-      method: "POST",
+      method: 'POST',
       uri: `${config.obServer}:${config.obPort}/ob/orderfulfillment`,
       body: body,
       json: true, // Automatically stringifies the body to JSON
       headers: {
-        Authorization: config.apiCredentials,
-      },
-    };
+        Authorization: config.apiCredentials
+      }
+    }
 
-    return rp(options);
+    return rp(options)
   } catch (err) {
-    console.error(`Error in openbazaar.js/fulfillOrder(): ${err}`);
-    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`);
-    throw err;
+    console.error(`Error in openbazaar.js/fulfillOrder(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    throw err
   }
 }
 
 // Returns a promise that resolves into an array of store listings.
-async function getListings(config) {
+async function getListings (config) {
   // debugger;
 
   try {
     const options = {
-      method: "GET",
+      method: 'GET',
       uri: `${config.obServer}:${config.obPort}/ob/listings`,
       json: true, // Automatically stringifies the body to JSON
       headers: {
-        Authorization: config.apiCredentials,
-      },
-    };
+        Authorization: config.apiCredentials
+      }
+    }
 
-    return rp(options);
+    return rp(options)
   } catch (err) {
-    console.error(`Error in openbazaar.js/getListings(): ${err}`);
-    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`);
-    throw err;
+    console.error(`Error in openbazaar.js/getListings(): ${err}`)
+    console.error(`Error stringified: ${JSON.stringify(err, null, 2)}`)
+    throw err
   }
 }
 
 // Create a listing in the OB store.
-function createListing(config, listingData) {
+function createListing (config, listingData) {
   const options = {
-    method: "POST",
+    method: 'POST',
     uri: `${config.obServer}:${config.obPort}/ob/listing/`,
     body: listingData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
-  };
+      Authorization: config.apiCredentials
+    }
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
-function removeListing(config, slug) {
+function removeListing (config, slug) {
   const options = {
-    method: "DELETE",
+    method: 'DELETE',
     uri: `${config.obServer}:${config.obPort}/ob/listing/${slug}`,
     body: {
-      slug: slug,
+      slug: slug
     },
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
-  };
+      Authorization: config.apiCredentials
+    }
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Create a profile for a new store
-function createProfile(config, profileData) {
+function createProfile (config, profileData) {
   const options = {
-    method: "POST",
+    method: 'POST',
     uri: `${config.obServer}:${config.obPort}/ob/profile/`,
     body: profileData,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
+      Authorization: config.apiCredentials
+    }
     // resolveWithFullResponse: true
-  };
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Get wallet balance
-function getWalletBalance(config) {
+function getWalletBalance (config) {
   const options = {
-    method: "GET",
+    method: 'GET',
     uri: `${config.obServer}:${config.obPort}/wallet/balance`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
+      Authorization: config.apiCredentials
+    }
     // resolveWithFullResponse: true
-  };
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Get wallet balance
-function getExchangeRate(config) {
+function getExchangeRate (config) {
   const options = {
-    method: "GET",
+    method: 'GET',
     uri: `${config.obServer}:${config.obPort}/ob/exchangerate`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
+      Authorization: config.apiCredentials
+    }
     // resolveWithFullResponse: true
-  };
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Get an address to recieve money
-function getAddress(config) {
+function getAddress (config) {
   const options = {
-    method: "GET",
+    method: 'GET',
     uri: `${config.obServer}:${config.obPort}/wallet/address`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
+      Authorization: config.apiCredentials
+    }
     // resolveWithFullResponse: true
-  };
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 // Send Money (Will send whatever cryptocurrency the server is configured for).
@@ -233,41 +233,41 @@ function getAddress(config) {
     feeLevel: 'NORMAL' or 'ECONOMIC'. Defaults to 'ECONOMIC'
     memo: Optional note.
 */
-function sendMoney(config, moneyObj) {
+function sendMoney (config, moneyObj) {
   const defaultObj = {
-    feeLevel: "ECONOMIC",
-  };
+    feeLevel: 'ECONOMIC'
+  }
 
   // Add default values to the moneyObj if they are not already assigned.
-  Object.assign(moneyObj, defaultObj);
+  Object.assign(moneyObj, defaultObj)
 
   const options = {
-    method: "POST",
+    method: 'POST',
     uri: `${config.obServer}:${config.obPort}/wallet/spend`,
     json: true, // Automatically stringifies the body to JSON
     body: moneyObj,
     headers: {
-      Authorization: config.apiCredentials,
-    },
+      Authorization: config.apiCredentials
+    }
     // resolveWithFullResponse: true
-  };
+  }
 
-  return rp(options);
+  return rp(options)
 }
 
 /*
   Retrieve information on an order.
 */
-function getOrder(config, orderId) {
+function getOrder (config, orderId) {
   const options = {
-    method: "GET",
+    method: 'GET',
     uri: `${config.obServer}:${config.obPort}/ob/order/${orderId}`,
     json: true, // Automatically stringifies the body to JSON
     headers: {
-      Authorization: config.apiCredentials,
-    },
+      Authorization: config.apiCredentials
+    }
     // resolveWithFullResponse: true
-  };
+  }
 
-  return rp(options);
+  return rp(options)
 }

@@ -2,7 +2,8 @@ version: '3'
 
 services:
   server:
-    image: openbazaar/server:v0.11.1
+    #image: openbazaar/server:v0.11.1
+    image: p2pvps/ob-server:v0.12.2
     ports:
       - "4001:4001"
       - "4002:4002"
