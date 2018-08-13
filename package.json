@@ -1,6 +1,6 @@
 {
   "name": "openbazaar-node",
-  "version": "1.3.3",
+  "version": "1.3.5",
   "description": "A node.js library for the OpenBazaar API. Uses async/await ECMA2017",
   "main": "openbazaar.js",
   "scripts": {

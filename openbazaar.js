@@ -8,7 +8,7 @@
   Most functions expect to be passed a config object. Here is an example of
   generating a config object:
 
-  // Generate api credentials for OpenBazaar.
+  //  Generate api credentials for OpenBazaar.
   let config = {
     // Config object passed to library functions.
     apiCredentials: apiCredentials,
